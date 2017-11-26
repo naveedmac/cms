@@ -1,0 +1,137 @@
+rails g model school name:string{20} description:text address:string city:string province:integer country_id:integer postal_code:string telephone:string website:string
+
+CREATE TABLE School
+(
+  school_id INT NOT NULL,
+  Name VARCHAR(50) NOT NULL,
+
+  Address INT NOT NULL,
+  City INT NOT NULL,
+  Province INT NOT NULL,
+  Country INT NOT NULL,
+  PostalCode INT NOT NULL,
+  TelephoneNo INT NOT NULL,
+  Description INT NOT NULL,
+  PRIMARY KEY (school_id)
+);
+
+rails g model user_type title:string{20} description:text
+CREATE TABLE user_type
+(
+  user_type_id INT NOT NULL,
+  title INT NOT NULL,
+  Description INT NOT NULL,
+  PRIMARY KEY (user_type_id)
+);
+
+rails g model user email:string{30} password_digest:string secret_question_1:text answer_1_digest:string secret_question_2:text answer_2_digest:string user_type:references school:references
+
+CREATE TABLE User
+(
+  user_id INT NOT NULL,
+  email INT NOT NULL,
+  password INT NOT NULL,
+  secret_Question_1 INT NOT NULL,
+  secret_Question_2 INT NOT NULL,
+  secret_question_3 INT NOT NULL,
+  userState INT NOT NULL,
+  user_type_id INT NOT NULL,
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (user_type_id) REFERENCES user_type(user_type_id)
+);
+
+rails g model instructor first_name:string{30} middle_name:string{30} last_name:string{30} about_me:text telephone_no:string{12} email:string{20} user:references
+
+CREATE TABLE Instructor
+(
+  Instructor_Id INT NOT NULL,
+  InstructorType INT NOT NULL,
+  first_name INT NOT NULL,
+  last_name INT NOT NULL,
+  telephone_no INT NOT NULL,
+  email INT NOT NULL,
+  about_me INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (Instructor_Id),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+rails g model student first_name:string{30} middle_name:string{30} last_name:string{30} about_me:text telephone_no:string{12} email:string{20} user:references
+
+CREATE TABLE student
+(
+  student_id INT NOT NULL,
+  first_name INT NOT NULL,
+  middle_name INT NOT NULL,
+  last_name INT NOT NULL,
+  parents_id INT NOT NULL,
+  DOB INT NOT NULL,
+  Allergies INT NOT NULL,
+  user_id INT NOT NULL,
+  PRIMARY KEY (student_id),
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+rails g model course title:string{20} description:text start_date:date end_date:date user:references
+
+CREATE TABLE Course
+(
+  course_id INT NOT NULL,
+  title INT NOT NULL,
+  description INT NOT NULL,
+  start_date INT NOT NULL,
+  state INT NOT NULL,
+  end_date INT NOT NULL,
+  creator_id INT NOT NULL,
+  PRIMARY KEY (course_id),
+  FOREIGN KEY (creator_id) REFERENCES User(user_id)
+);
+
+rails g model topic title:string{20} description:text no_of_hours_required:integer percentage_completed:integer course:references
+
+CREATE TABLE Topic
+(
+  topic_id INT NOT NULL,
+  title INT NOT NULL,
+  description INT NOT NULL,
+  no_of_hours_required INT NOT NULL,
+  percentage_completed INT NOT NULL,
+  state INT NOT NULL,
+  course_id INT NOT NULL,
+  PRIMARY KEY (topic_id),
+  FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+
+rails g model material title:string{20} description:text file_link:text instructions:text user:references topic:references
+
+CREATE TABLE material
+(
+  material_id INT NOT NULL,
+  title INT NOT NULL,
+  description INT NOT NULL,
+  file_link INT NOT NULL,
+  file_type INT NOT NULL,
+  material_state INT NOT NULL,
+  instructions INT NOT NULL,
+  state INT NOT NULL,
+  created_by INT NOT NULL,
+  topic_id INT NOT NULL,
+  PRIMARY KEY (material_id),
+  FOREIGN KEY (topic_id) REFERENCES Topic(topic_id)
+);
+
+rails g model cohort material title:string{20} description:text student:references instructor:references school:references course:references
+
+CREATE TABLE cohort
+(
+  name INT NOT NULL,
+  description INT NOT NULL,
+  course_id INT NOT NULL,
+  student_id INT NOT NULL,
+  school_id INT NOT NULL,
+  Instructor_Id INT NOT NULL,
+  FOREIGN KEY (course_id) REFERENCES Course(course_id),
+  FOREIGN KEY (student_id) REFERENCES student(student_id),
+  FOREIGN KEY (school_id) REFERENCES School(school_id),
+  FOREIGN KEY (Instructor_Id) REFERENCES Instructor(Instructor_Id)
+);
