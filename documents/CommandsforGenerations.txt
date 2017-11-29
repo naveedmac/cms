@@ -137,3 +137,4 @@ CREATE TABLE cohort
 );
 rails g migration RemoveInstructorFromCohort instructor:references
 rails g migration RemoveDescriptionMaterialFromCohort description material title
+rails g migration RemoveSchoolFromCohort school:references

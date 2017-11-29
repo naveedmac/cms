@@ -146,11 +146,12 @@ puts super_user.errors.full_messages
   3.times.each do |no|
     start_date=Faker::Date.forward(23)
     end_date=Faker::Date.forward(23)+90
-    Course.create(
+    course=Course.create(
       description:Faker::Lorem.sentence(3, true),
       start_date:start_date,
       end_date:end_date,
       title: Faker::Educator.course,
+      instructor_id: instructors.sample.id,
       user_id: instructors.sample.id
       )do |course| 
       puts course.errors.full_messages
@@ -163,17 +164,40 @@ puts super_user.errors.full_messages
   students.each do |s|
     cohort=Cohort.create(
     course_id: courses.sample.id,
-    student_id: s.id,
-    school_id: School.all.sample.id
+    student_id: s.id
     )
-    puts "*****************************"
+    # puts "*****************************"
     # puts instructors.all.sample.id
     puts cohort.errors.full_messages
-    puts "*****************************"
+    # puts "*****************************"
   end
   # do |cohort| 
   #   puts cohort.errors.full_messages
   #   end
+30.times.each do
+  topic=Topic.create(
+    description: Faker::SiliconValley.quote,
+    no_of_hours_required:rand(1..5),
+    percentage_completed:rand(0..100),
+    title: Faker::ProgrammingLanguage.name,
+    course_id: Course.all.sample.id
+  )
+topic.errors.full_messages
+end
+
+topics=Topic.all 
+topics.each do |t|
+rand(0..9).times.each do |no|
+Material.create(
+  description: Faker::MostInterestingManInTheWorld.quote,
+  instructions: Faker::Hacker.say_something_smart,
+  title: Faker::Hacker.adjective,
+  topic_id: t.id,
+  file_link:Faker::File.file_name('path/to')
+)
+end
+end
+
 
   puts Cowsay.say("Created #{UserType.count} users type", :tux)
   puts Cowsay.say("Created #{users.count} users ", :tux)
@@ -181,3 +205,5 @@ puts super_user.errors.full_messages
   puts Cowsay.say("Created #{Instructor.count} Instructors and TAs ", :tux)
   puts Cowsay.say("Created #{courses.count} courses", :tux)
   puts Cowsay.say("Created #{Cohort.count} Cohort", :tux)
+  puts Cowsay.say("Created #{Topic.count} Topic", :tux)
+  puts Cowsay.say("Created #{Material.count} material.", :tux)
