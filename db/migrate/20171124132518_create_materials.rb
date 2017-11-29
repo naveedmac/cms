@@ -1,7 +1,7 @@
 class CreateMaterials < ActiveRecord::Migration[5.1]
   def change
     create_table :materials do |t|
-      t.string :title, limit: 20
+      t.string :title, limit: 30
       t.text :description
       t.text :file_link
       t.text :instructions

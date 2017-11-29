@@ -2,7 +2,7 @@ class CreateCohorts < ActiveRecord::Migration[5.1]
   def change
     create_table :cohorts do |t|
       t.string :material
-      t.string :title, limit: 20
+      t.string :title, limit: 30
       t.text :description
       t.references :student, foreign_key: true
       t.references :instructor, foreign_key: true
