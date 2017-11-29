@@ -10,29 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124132902) do
+ActiveRecord::Schema.define(version: 20171129013158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cohorts", force: :cascade do |t|
-    t.string "material"
-    t.string "title", limit: 20
-    t.text "description"
     t.bigint "student_id"
-    t.bigint "instructor_id"
     t.bigint "school_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_cohorts_on_course_id"
-    t.index ["instructor_id"], name: "index_cohorts_on_instructor_id"
     t.index ["school_id"], name: "index_cohorts_on_school_id"
     t.index ["student_id"], name: "index_cohorts_on_student_id"
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "title", limit: 20
+    t.string "title", limit: 80
     t.text "description"
     t.date "start_date"
     t.date "end_date"
@@ -45,10 +40,10 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   create_table "instructors", force: :cascade do |t|
     t.string "first_name", limit: 30
     t.string "middle_name", limit: 30
-    t.string "last_name", limit: 30
+    t.string "last_name", limit: 40
     t.text "about_me"
-    t.string "telephone_no", limit: 12
-    t.string "email", limit: 20
+    t.string "telephone_no", limit: 30
+    t.string "email", limit: 40
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,7 +51,7 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   create_table "materials", force: :cascade do |t|
-    t.string "title", limit: 20
+    t.string "title", limit: 30
     t.text "description"
     t.text "file_link"
     t.text "instructions"
@@ -69,7 +64,7 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   create_table "schools", force: :cascade do |t|
-    t.string "name", limit: 20
+    t.string "name", limit: 30
     t.text "description"
     t.string "address"
     t.string "city"
@@ -83,12 +78,12 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "first_name", limit: 30
-    t.string "middle_name", limit: 30
-    t.string "last_name", limit: 30
+    t.string "first_name", limit: 40
+    t.string "middle_name", limit: 40
+    t.string "last_name", limit: 40
     t.text "about_me"
-    t.string "telephone_no", limit: 12
-    t.string "email", limit: 20
+    t.string "telephone_no", limit: 20
+    t.string "email", limit: 40
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +91,7 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string "title", limit: 20
+    t.string "title", limit: 30
     t.text "description"
     t.integer "no_of_hours_required"
     t.integer "percentage_completed"
@@ -107,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   create_table "user_types", force: :cascade do |t|
-    t.string "title", limit: 20
+    t.string "title", limit: 30
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -129,7 +124,6 @@ ActiveRecord::Schema.define(version: 20171124132902) do
   end
 
   add_foreign_key "cohorts", "courses"
-  add_foreign_key "cohorts", "instructors"
   add_foreign_key "cohorts", "schools"
   add_foreign_key "cohorts", "students"
   add_foreign_key "courses", "users"

@@ -1,7 +1,7 @@
 class CreateCourses < ActiveRecord::Migration[5.1]
   def change
     create_table :courses do |t|
-      t.string :title, limit: 20
+      t.string :title, limit: 80
       t.text :description
       t.date :start_date
       t.date :end_date
