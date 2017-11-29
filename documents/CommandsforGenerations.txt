@@ -138,3 +138,6 @@ CREATE TABLE cohort
 rails g migration RemoveInstructorFromCohort instructor:references
 rails g migration RemoveDescriptionMaterialFromCohort description material title
 rails g migration RemoveSchoolFromCohort school:references
+rails g controller students --no-assets --no-helper –no-routes
+rails g controller instructors --no-assets --no-helper –no-routes
+rails g controller courses --no-assets --no-helper –no-routes
