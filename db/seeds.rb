@@ -198,7 +198,6 @@ Material.create(
 end
 end
 
-
   puts Cowsay.say("Created #{UserType.count} users type", :tux)
   puts Cowsay.say("Created #{users.count} users ", :tux)
   puts Cowsay.say("Created #{students.count} student ", :tux)
