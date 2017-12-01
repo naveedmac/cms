@@ -21,12 +21,12 @@ UserType.destroy_all
 # Topic.destroy_all
 # Material.destroy_all
 
-3.times.each do |no|
-  UserType.create(
-    title: ["Student", "Teaching Assistant", "Instructor"][no],
-    description: Faker::Company.buzzword
-  )
-end
+# 3.times.each do |no|
+#   UserType.create(
+#     title: ["Student", "Teaching Assistant", "Instructor"][no],
+#     description: Faker::Company.buzzword
+#   )
+# end
 school = School.create(
   address: '123 abc street',
   city: "Vancouver",
@@ -43,8 +43,8 @@ super_user = User.create(
   answer_1_digest: Faker::Friends.character,
   secret_question_2: "Middle name of your elder kid?",
   answer_2_digest: Faker::Friends.character,
-  school_id: school.id,
-  user_type: UserType.find_by(title: "Instructor")
+  school_id: school.id
+  # user_type: UserType.find_by(title: "Instructor")
 )
 puts super_user.errors.full_messages
 30.times.each do
@@ -56,8 +56,8 @@ puts super_user.errors.full_messages
     answer_1_digest: Faker::Friends.character,
     secret_question_2: "Middle name of your elder kid?",
     answer_2_digest: Faker::Friends.character,
-    school_id: school.id,
-    user_type: UserType.find_by(title: "Student")
+    school_id: school.id
+    # user_type: UserType.find_by(title: "Student")
     )
   end
   2.times.each do
@@ -69,8 +69,8 @@ puts super_user.errors.full_messages
         answer_1_digest: Faker::Friends.character,
         secret_question_2: "Middle name of your elder kid?",
         answer_2_digest: Faker::Friends.character,
-        school_id: school.id,
-        user_type: UserType.find_by(title: "Instructor")
+        school_id: school.id
+        # user_type: UserType.find_by(title: "Instructor")
         )
       end
       6.times.each do

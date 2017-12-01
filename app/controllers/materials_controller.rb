@@ -28,6 +28,6 @@ class MaterialsController < ApplicationController
       end
     
       def material_params
-        params.require(:material).permit(:title, :description,:no_of_hours_required, :percentage_completed)
+        params.require(:material).permit(:title, :description,:instructions, :file_link)
       end
 end

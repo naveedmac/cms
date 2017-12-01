@@ -16,7 +16,7 @@
       </div>
       
 <div>
-      <%= f.input :file_link %>
+      <%= f.input :file_link, as: :file %>
     </div>
 <%= f.submit %>
 <% end %>
@@ -27,7 +27,8 @@
     Material Title:         <%= material.title.titleize%><br>
     Material Description:   <%= material.description%><br>
     Material Instruction:   <%= material.instructions%><br>
-    Material Link:          <%= material.file_link%>
+    <%= image_tag material.file_link.url(:large) if material.file_link.present? %>
+    
   
  
   <p><strong>Created At:</strong> <%= time_ago_in_words(material.created_at) %> ago</p>
