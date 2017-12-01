@@ -143,7 +143,7 @@ puts super_user.errors.full_messages
 
   students=Student.all
 
-  3.times.each do |no|
+  10.times.each do |no|
     start_date=Faker::Date.forward(23)
     end_date=Faker::Date.forward(23)+90
     course=Course.create(

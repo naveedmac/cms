@@ -1,0 +1,61 @@
+<h1><%= @course.title %></h1>
+
+<p><%= @course.description %></p>
+
+<%# `&.` is the safe navigation operator. It can be used to avoid
+    "undefined method `...' for nil:NilClass" errors. When used instead of `.`,
+    it will check the object before it before trying to execute the method after
+    it. If the object is `nil`, then it will immediately return `nil`.
+%>
+
+<p><strong>Start Date:</strong> <%= @course.start_date %></p>
+<p><strong>Ending Date:</strong> <%= @course.end_date %></p>
+<%= link_to(
+    'Delete',
+    course_path(@course),
+    data: {confirm: 'Are you sure?'},
+    method: :delete
+  ) %>
+
+  <h2>Topics Covered</h2>
+  
+  <%# If we want to create a form for a resource that is nested inside another,
+      we must give `form_for` the resources in an array in the order of ancestor to
+      descendant like below. This will create a form that uses `question_answers_path`
+      to generate the value for its `action` attribute.
+  %>
+  <%= simple_form_for [@course, @topic],html: { class: 'form-horizontal' } do |f| %>
+  <% if @topic.errors.present? %>
+    <p>
+      <%= @topic.errors.full_messages.join(', ') %>
+    </p>
+  <% end %>
+  <div>
+        <%= f.input :title %>
+      </div>
+  <div>
+    <%= f.input :description %>
+  </div>
+  <div>
+        <%= f.input :no_of_hours_required %>
+      </div>
+      <div>
+            <%= f.input :percentage_completed %>
+          </div>
+  <%= f.submit %>
+<% end %>
+  
+<% @topics.each do |topic| %>
+<div >
+    <%= link_to topic.title, topic_path(topic) %>
+  
+ 
+  <p><strong>Created At:</strong> <%= time_ago_in_words(topic.created_at) %> ago</p>
+  
+    <%= link_to(
+      'Delete',
+      topic_path(topic),
+      data: {confirm: 'Are you sure?'},
+      method: :delete
+    ) %>
+  <%end%>

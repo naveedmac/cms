@@ -31,6 +31,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'simple_form'
+gem 'chosen-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

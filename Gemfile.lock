@@ -64,6 +64,10 @@ GEM
     case_transform (0.2)
       activesupport
     choice (0.2.0)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -164,6 +168,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    simple_form (3.5.0)
+      actionpack (> 4, < 5.2)
+      activemodel (> 4, < 5.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -200,6 +207,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap
   byebug
+  chosen-rails
   coffee-rails (~> 4.2)
   cowsay (~> 0.3.0)
   faker!
@@ -214,6 +222,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails-erd
   sass-rails (~> 5.0)
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
