@@ -1,0 +1,9 @@
+<%= simple_form_for @student,html: { class: 'form-horizontal' } do |f| %>
+<%= f.input :first_name, label: 'First Name' %>
+<%= f.input :middle_name, label: 'Middle Name' %>
+<%= f.input :last_name, label: 'Last Name' %>
+<%= f.input :about_me %>
+<%= f.input :telephone_no %>
+
+<%= f.submit class: 'btn btn-primary' %>
+<% end %>

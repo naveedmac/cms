@@ -1,0 +1,16 @@
+<%= simple_form_for @cohort do |form| %>
+
+
+    <%= form.input :course_id, collection: @courses.map{|c|[c.title, c.id]} %>
+    
+    <%= form.label :student_ids %>
+
+    <%= form.collection_select :student_id, Student.order(:first_name), :id, :first_name,
+    {},
+    { multiple: true, class: 'chosen-select' } %>
+
+                                            
+                                
+
+    <%= form.submit class: 'btn btn-primary' %>
+<% end %>
