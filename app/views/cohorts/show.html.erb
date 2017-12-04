@@ -1,6 +1,18 @@
-<h1> Cohort Created</h1>
-<% @students.each do |student| %>
-<div >
-<p>  <%= student.first_name %> | <%= student.last_name %> </p>
+<div class="list-group mt-3">
+  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Class for <%= @course.title%> Created</h5>
+    </div>
+    <p class="mb-1"><%= @course.description%></p>
+    <small>Start Date:<%= @course.start_date%> </small>
+    <small>End Date:<%= @course.end_date%> </small>
+  </a>
+  <% @users.each do |user| %>
+  <div class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= user.first_name %> | <%= user.last_name %></h5>
+    </div>
+  </div>
+
+  <% end %>
 </div>
-<% end %>

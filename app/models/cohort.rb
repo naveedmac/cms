@@ -1,6 +1,6 @@
 class Cohort < ApplicationRecord
   # belongs_to :student
-  belongs_to :student
+  belongs_to :user
   belongs_to :course
 
   # belongs_to :course
@@ -8,8 +8,6 @@ class Cohort < ApplicationRecord
 
   # attr_accessor :student_ids
     
-  def student_list
-    student.map(&:name).join(', ')
-  end
+  
 
 end

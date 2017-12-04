@@ -35,6 +35,8 @@ gem 'simple_form'
 gem 'chosen-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'cancancan'
+gem   'font-awesome-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

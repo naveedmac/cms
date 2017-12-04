@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201184237) do
+ActiveRecord::Schema.define(version: 20171201195446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cohorts", force: :cascade do |t|
-    t.bigint "student_id"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["course_id"], name: "index_cohorts_on_course_id"
-    t.index ["student_id"], name: "index_cohorts_on_student_id"
+    t.index ["user_id"], name: "index_cohorts_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -32,22 +32,7 @@ ActiveRecord::Schema.define(version: 20171201184237) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "instructor_id"
-    t.index ["instructor_id"], name: "index_courses_on_instructor_id"
     t.index ["user_id"], name: "index_courses_on_user_id"
-  end
-
-  create_table "instructors", force: :cascade do |t|
-    t.string "first_name", limit: 30
-    t.string "middle_name", limit: 30
-    t.string "last_name", limit: 40
-    t.text "about_me"
-    t.string "telephone_no", limit: 30
-    t.string "email", limit: 40
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -75,19 +60,6 @@ ActiveRecord::Schema.define(version: 20171201184237) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string "first_name", limit: 40
-    t.string "middle_name", limit: 40
-    t.string "last_name", limit: 40
-    t.text "about_me"
-    t.string "telephone_no", limit: 20
-    t.string "email", limit: 40
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_students_on_user_id"
-  end
-
   create_table "topics", force: :cascade do |t|
     t.string "title", limit: 40
     t.text "description"
@@ -109,16 +81,19 @@ ActiveRecord::Schema.define(version: 20171201184237) do
     t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "about_me"
+    t.string "address"
+    t.string "telephone"
+    t.boolean "is_admin", default: false
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
   add_foreign_key "cohorts", "courses"
-  add_foreign_key "cohorts", "students"
-  add_foreign_key "courses", "instructors"
+  add_foreign_key "cohorts", "users"
   add_foreign_key "courses", "users"
-  add_foreign_key "instructors", "users"
   add_foreign_key "materials", "topics"
-  add_foreign_key "students", "users"
   add_foreign_key "topics", "courses"
   add_foreign_key "users", "schools"
 end

@@ -142,3 +142,6 @@ rails g controller students --no-assets --no-helper –no-routes
 rails g controller instructors --no-assets --no-helper –no-routes
 rails g controller courses --no-assets --no-helper –no-routes
 rails g controller cohorts --no-assets --no-helper –no-routes
+rails g migration RemoveInstructorFromCourse instructor:references
+rails generate migration drop_instructors
+rails generate migration drop_students
