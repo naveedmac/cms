@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
 
           redirect_to course_path(@course)
         else
-          @topic = @course.topics.order(created_at: :desc)
+          @topics = @course.topics.order(created_at: :desc)
           render 'courses/show'
         end
       end

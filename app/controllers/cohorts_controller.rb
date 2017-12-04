@@ -1,7 +1,8 @@
 class CohortsController < ApplicationController
+  before_action :find_cohort, only: [:destroy]
     def new
       @courses=Course.all
-      @user=User.where(is_admin:false)  
+      @user=User.where(is_admin:false)
       @cohort=Cohort.new
     end
     def create
@@ -33,7 +34,7 @@ class CohortsController < ApplicationController
             # end
 
             # cohort = Cohort.new cohort_params
-            
+
             # if errors.empty?
             #   redirect_to cohort, notice: 'Students enrolled!'
             # else
@@ -45,10 +46,19 @@ class CohortsController < ApplicationController
                 @course=Course.find params[:id]
                 @cohort=Cohort.where course_id:params[:id]
                 @users=@cohort.map {|cohort_record| cohort_record.user}
-                
+
                 #byebug
             #   @cohort= Course.find.map (Cohort.all.group(:course_id).count)
           end
+          def destroy
+            course = Course.find cohort_params[:course_id]
+            user_id = cohort_params[:user_id]
+            @cohort=Cohort.where (user_id: user_id, course_id: course.id  )
+            @cohort.destroy
+            redirect_to cohorts_path
+          end
+
+
           def index
             # @questions = Question.where(aasm_state: [:published, :answered]).order(created_at: :desc)
             @courses= Cohort.select(:course_id).distinct.map {|course_record| Course.find(course_record.course_id)}
@@ -59,12 +69,13 @@ class CohortsController < ApplicationController
           params.require(student_id)
             end
           def cohort_params
-              
+
               params.require(:cohort).permit(
                  :course_id, {user_id: []}
               )
             end
           def find_cohort
               @cohort = Cohort.find params[:id]
+              @user= User.find params
             end
 end

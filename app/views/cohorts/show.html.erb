@@ -10,7 +10,8 @@
   <% @users.each do |user| %>
   <div class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"><%= user.first_name %> | <%= user.last_name %></h5>
+      <h5 class="mb-1"><%= user.full_name %> | <%= user.email %> | <%= user.telephone %> | <%= user.about_me %>
+        <%= link_to('Delete',cohorts_path(user),data: {confirm: 'Are you sure?'},method: :delete) %></h5>
     </div>
   </div>
 
