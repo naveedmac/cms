@@ -1,17 +1,6 @@
 <%= simple_form_for @cohort do |form| %>
-
-
     <%= form.input :course_id, collection: @courses.map{|c|[c.title, c.id]} %>
-    
     <%= form.label :user_ids %>
-
-    
-
-    
     <%= form.collection_check_boxes :user_id,  User.where(is_admin:false).order(:first_name), :id, :first_name, html: {class: "block"}  %>
-     
-                                            
-                                
-
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary pull-right  ' %>
 <% end %>
