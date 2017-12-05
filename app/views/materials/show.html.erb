@@ -9,7 +9,7 @@
 
   <p><a href="<%= @material.url_link%>" target="_blank" ><%= @material.url_link%></a></p>
 
-  <p class="lead">
+  <p class="lead pull-right">
     <%= link_to('Delete',material_path(@material),data: {confirm: 'Are you sure?'},method: :delete) %>
   </p>
 </div>

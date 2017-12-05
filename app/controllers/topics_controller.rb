@@ -10,13 +10,13 @@ end
         @topic = @course.topics.build(topic_params)
 
         # @topic.user = User.first
-
+# byebug
         if @topic.save
 
           redirect_to course_path(@course)
         else
           @topics = @course.topics.order(created_at: :desc)
-          render 'courses/show'
+          render :new
         end
       end
       def show

@@ -7,12 +7,13 @@
   <hr class="my-6">
   <p>No. Of Hrs:<%=@topic.no_of_hours_required  %><br> % Completed: <%=@topic.percentage_completed  %></p>
   <smal class="pull-right">
-    <%= link_to('Delete',material_path(@topic),data: {confirm: 'Are you sure?'},method: :delete) %>
     <%= link_to(
       'Add Material',
       new_topic_material_path(@topic)
 
-      ) %>
+      ) %> &nbsp;|&nbsp;
+    <%= link_to('Delete',material_path(@topic),data: {confirm: 'Are you sure?'},method: :delete) %>
+
 
   </small >
 
@@ -26,6 +27,7 @@ List of Material in Topic:
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Instructions</th>
+      <th scope="col">Link</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>

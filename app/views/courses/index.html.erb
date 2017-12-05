@@ -1,25 +1,25 @@
 <div class='container mt-5' style="width: 90%">
-<h3>All Courses</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">End Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-    <tr>
-      <td><%= course.id%></td>
-      <td><%= link_to course.title, course_path(course) %></td>
-      <td><%= course.description%></td>
-      <td><%= course.start_date%></td>
-      <td><%= course.end_date%></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h3>All Courses</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.id%></td>
+        <td><%= link_to course.title, course_path(course) %></td>
+        <td><%= course.description%></td>
+        <td><%= course.start_date%></td>
+        <td><%= course.end_date%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

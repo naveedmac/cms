@@ -14,7 +14,8 @@ class MaterialsController < ApplicationController
           redirect_to topic_path(@topic)
         else
           @materials = @topic.material.order(created_at: :desc)
-          render 'topics/show'
+          render :new
+          # 'topics/show'
         end
       end
     def destroy
