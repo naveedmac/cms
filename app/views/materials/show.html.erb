@@ -5,6 +5,7 @@
   <p class="lead"><%=@material.description %></p>
   <hr class="my-4">
   <p><%=@material.instructions  %></p>
+  <p><%= link_to(@material.file_link.url(:large) if @material.file_link.present?) %></p>
   <p class="lead">
     <%= link_to('Delete',material_path(@material),data: {confirm: 'Are you sure?'},method: :delete) %>
   </p>
