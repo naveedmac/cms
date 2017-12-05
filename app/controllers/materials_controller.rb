@@ -33,6 +33,6 @@ class MaterialsController < ApplicationController
       end
 
       def material_params
-        params.require(:material).permit(:title, :description,:instructions, :file_link)
+        params.require(:material).permit(:title, :description,:instructions, :file_link,:url_link)
       end
 end
