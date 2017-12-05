@@ -51,9 +51,10 @@ class CohortsController < ApplicationController
             #   @cohort= Course.find.map (Cohort.all.group(:course_id).count)
           end
           def destroy
-            course = Course.find cohort_params[:course_id]
-            user_id = cohort_params[:user_id]
-            @cohort=Cohort.where (user_id: user_id, course_id: course.id  )
+            # course = Course.find params[:id]
+            user_id = params[:id]
+            # Cohort.where course_id: 9,user_id: 7
+            @cohort=Cohort.where user_id: user_id, course_id: course.id
             @cohort.destroy
             redirect_to cohorts_path
           end
@@ -61,7 +62,7 @@ class CohortsController < ApplicationController
 
           def index
             # @questions = Question.where(aasm_state: [:published, :answered]).order(created_at: :desc)
-            @courses= Cohort.select(:course_id).distinct.map {|course_record| Course.find(course_record.course_id)}
+            @courses= Cohort.select(:course_id).limit(7).distinct.map {|course_record| Course.find(course_record.course_id)}
             # p @courses
         end
           private
@@ -76,6 +77,6 @@ class CohortsController < ApplicationController
             end
           def find_cohort
               @cohort = Cohort.find params[:id]
-              @user= User.find params
+              # @user= User.find params
             end
 end

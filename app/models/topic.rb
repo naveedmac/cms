@@ -1,7 +1,7 @@
 class Topic < ApplicationRecord
   belongs_to :course
-  has_many :material, dependent: :nullify
-  mount_uploader :file_link, AvatarUploader
+  has_many :material, dependent: :destroy
+  # mount_uploader :file_link, AvatarUploader
   validates(:title, {
     presence: {message: 'must be provided'},
     length: {minimum: 5, maximum: 79}

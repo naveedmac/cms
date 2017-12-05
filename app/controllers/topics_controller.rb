@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
-  before_action :find_course, only: [ :create]
-  before_action :find_topic, only: [:show]
+  before_action :find_course, only: [:create]
+  before_action :find_topic, only: [:show, :destroy]
   before_action :authorize_user!
     def create
         @topic = @course.topics.build(topic_params)
@@ -28,8 +28,9 @@ class TopicsController < ApplicationController
         @material = Material.new
     end
     def destroy
+      @course=@topic.course
         @topic.destroy
-        redirect_to course_path(@topic.course)
+        redirect_to course_path(@course)
       end
     private
     def find_course

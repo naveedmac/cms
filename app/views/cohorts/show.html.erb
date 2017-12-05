@@ -7,13 +7,26 @@
     <small>Start Date:<%= @course.start_date%> </small>
     <small>End Date:<%= @course.end_date%> </small>
   </a>
+  <table class="table">
+    <thead>
+      <tr>
+
+        <th scope="col">Student Name</th>
+        <th scope="col">Telephone</th>
+        <th scope="col">email</th>
+      </tr>
+    </thead>
+    <tbody>
   <% @users.each do |user| %>
-  <div class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"><%= user.full_name %> | <%= user.email %> | <%= user.telephone %> | <%= user.about_me %>
-        <%= link_to('Delete',cohorts_path(user),data: {confirm: 'Are you sure?'},method: :delete) %></h5>
-    </div>
-  </div>
+  <tr>
+
+    <td><%= user.full_name %></td>
+    <td><%= user.telephone %></td>
+    <td><%= user.email %></td>
+  </tr>
 
   <% end %>
+</tbody>
+</table>
 </div>
+  

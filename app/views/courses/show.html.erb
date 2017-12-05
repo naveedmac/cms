@@ -1,47 +1,60 @@
 <div width='50%'>
-<h1><%= @course.title %></h1>
+  <h1><%= @course.title %></h1>
+  <p><%= @course.description %></p>
+  <p><strong>Start Date:</strong> <%= @course.start_date %></p>
+  <p><strong>End Date:</strong> <%= @course.end_date %></p>
 
-<p><%= @course.description %></p>
+  <%= link_to(
+    'Delete',
+    course_path(@course),
+    data: {confirm: 'Are you sure?'},
+    method: :delete
+    ) %>
+    <div class='container' style="width: 50%">
+      <h2>Topics Covered</h2>
 
-<%# `&.` is the safe navigation operator. It can be used to avoid
-"undefined method `...' for nil:NilClass" errors. When used instead of `.`,
-it will check the object before it before trying to execute the method after
-it. If the object is `nil`, then it will immediately return `nil`.
-%>
+    </div>
+    <p>
+      <div >
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Hrs Required</th>
+              <th scope="col">% Complete</th>
 
-<p><strong>Start Date:</strong> <%= @course.start_date %></p>
-<p><strong>End Date:</strong> <%= @course.end_date %></p>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <%= simple_form_for [@course, @topic],html: { class: 'form-horizontal' } do |f| %>
+              <th scope="row"></th>
+              <td><%= f.input :title %></td>
+              <td><%= f.input :description %></td>
+              <td><%= f.input :no_of_hours_required %></td>
+              <td><%= f.input :percentage_completed %></td>
+              <td><%= f.submit %></td>
+              <% end %>
+            </tr>
 
-<%= link_to(
-  'Delete',
-  course_path(@course),
-  data: {confirm: 'Are you sure?'},
-  method: :delete
-  ) %>
-<div class='container' style="width: 50%">
-  <h2>Topics Covered</h2>
-  <%= simple_form_for [@course, @topic],html: { class: 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :no_of_hours_required %>
-  <%= f.input :percentage_completed %>
-  <%= f.submit %>
-  <% end %>
-</div>
-<p>
-  <% @topics.each do |topic| %>
-  <div >
-    <%= link_to topic.title, topic_path(topic) %>
-
-
-    <p><strong>Created At:</strong> <%= time_ago_in_words(topic.created_at) %> ago</p>
-    <% if can? :manage, topic %>
-    <%= link_to(
-      'Delete',
-      topic_path(topic),
-      data: {confirm: 'Are you sure?'},
-      method: :delete
-      ) %>
-      <%end%>
-      <%end%>
-</div>
+            <% @topics.each do |topic| %>
+            <tr>
+              <th scope="row"><%= topic.id%></th>
+              <td><%= link_to topic.title, topic_path(topic) %></td>
+              <td><%= topic.description%></td>
+              <td><%= topic.no_of_hours_required%></td>
+              <td><%= topic.percentage_completed%></td>
+              <td><%= link_to(
+                'Delete',
+                topic_path(topic),
+                data: {confirm: 'Are you sure?'},
+                method: :delete
+                ) %></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>

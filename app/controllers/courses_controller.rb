@@ -22,7 +22,7 @@ class CoursesController < ApplicationController
     end
     def index
         # @questions = Question.where(aasm_state: [:published, :answered]).order(created_at: :desc)
-        @courses= Course.all
+        @courses= Course.all.limit(7)
     end
     def show
 

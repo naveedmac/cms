@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :students
+  
   resources :cohorts, shallow: true, only: [:new, :show,:create, :destroy, :index]
   root 'welcome#index'
 

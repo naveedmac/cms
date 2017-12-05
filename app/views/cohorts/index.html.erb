@@ -1,5 +1,24 @@
-<h1>All Courses</h1>
 
-<% @courses.each do |course| %>
-    <%= link_to course.title, cohort_path(course.id) %><br>
-<% end %>
+<h1>All Courses</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.id%></td>
+      <td><%= link_to course.title, cohort_path(course) %></td>
+      <td><%= course.description%></td>
+      <td><%= course.start_date%></td>
+      <td><%= course.end_date%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
