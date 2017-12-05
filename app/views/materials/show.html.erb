@@ -1,5 +1,6 @@
 
 <div class="jumbotron   mt-4">
+  <%= image_tag @material.file_link.url(:large) if @material.file_link.present? %>
   <h1 class="display-3"><%=@material.title %></h1>
   <p class="lead"><%=@material.description %></p>
   <hr class="my-4">

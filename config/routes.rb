@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :topics, shallow: true, only: [:show,:create, :destroy, :new] do
-      resources :materials, only: [:create, :destroy, :update, :show]
+      resources :materials, only: [:create, :destroy, :update, :show, :new]
     end
   end
 
