@@ -1,4 +1,4 @@
-<h1>Material   </h1>
+<h3>Material   </h3>
 <div class='container' style="width: 50%">
   <%= simple_form_for [@topic, @material],html: { class: 'form-horizontal' } do |f| %>
   <%= f.input :title %>
@@ -8,24 +8,33 @@
   <%= f.submit %>
   <% end %>
 </div>
-
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Instructions</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
 <% @materials.each do |material| %>
-<div >
-  <%= link_to material.topic.title, material_path(material) %>
-  Topic Name:             <%=material.topic.title%><br>   |
-  Material Title:         <%= material.title.titleize%><br>
-  Material Description:   <%= material.description%><br>
-  Material Instruction:   <%= material.instructions%><br>
-  <%= image_tag material.file_link.url(:large) if material.file_link.present? %>
+      <tr>
+        <th scope="row"><%= link_to material.topic.title, material_path(material) %></th>
+        <td><%= link_to material.title.titleize, material_path(material) %></td>
+        <td><%= material.description%></td>
+        <td><%= material.instructions%></td>
+        <td><%= image_tag material.file_link.url(:large) if material.file_link.present? %></td>
+        <td><%= link_to(
+          'Delete',
+          material_path(material),
+          data: {confirm: 'Are you sure?'},
+          method: :delete
+          ) %></td>
+      </tr>
 
 
-
-  <p><strong>Created At:</strong> <%= time_ago_in_words(material.created_at) %> ago</p>
-
-  <%= link_to(
-    'Delete',
-    material_path(material),
-    data: {confirm: 'Are you sure?'},
-    method: :delete
-    ) %>
     <%end%>
+  </tbody>
+</table>

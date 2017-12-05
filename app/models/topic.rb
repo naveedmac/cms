@@ -4,7 +4,7 @@ class Topic < ApplicationRecord
   # mount_uploader :file_link, AvatarUploader
   validates(:title, {
     presence: {message: 'must be provided'},
-    length: {minimum: 5, maximum: 79}
+    length: {minimum: 5, maximum: 39}
   })
   # validates :title, presence: :true
   # validates :description, presence: :true
