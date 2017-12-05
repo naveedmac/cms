@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
     end
     def show
 
-        @topics = @course.topics.order(created_at: :desc)
+        @topics = @course.topics.order(created_at: :desc).limit(2)
         @topic = Topic.new
     end
     def edit

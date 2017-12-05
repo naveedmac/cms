@@ -1,7 +1,11 @@
 class TopicsController < ApplicationController
-  before_action :find_course, only: [:create]
+  before_action :find_course, only: [:new,:create]
   before_action :find_topic, only: [:show, :destroy]
   before_action :authorize_user!
+def new
+@topic = Topic.new
+
+end
     def create
         @topic = @course.topics.build(topic_params)
 
@@ -42,7 +46,7 @@ class TopicsController < ApplicationController
       end
 
       def topic_params
-        params.require(:topic).permit(:title, :description,:file_link, :instructions)
+        params.require(:topic).permit(:title, :description,:no_of_hours_required, :percentage_completed,:file_link, :instructions)
       end
       def authorize_user!
 

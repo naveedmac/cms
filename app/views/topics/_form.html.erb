@@ -1,0 +1,8 @@
+<%= simple_form_for [@course, @topic],html: { class: 'form-horizontal' } do |f| %>
+<th scope="row"></th>
+<td><%= f.input :title %></td>
+<td><%= f.input :description %></td>
+<td><%= f.input :no_of_hours_required %></td>
+<td><%= f.input :percentage_completed %></td>
+<td><%= f.submit %></td>
+<% end %>

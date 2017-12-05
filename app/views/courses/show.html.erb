@@ -1,5 +1,5 @@
 <div width='50%'>
-  <h1><%= @course.title %></h1>
+  <h3><%= @course.title %></h3>
   <p><%= @course.description %></p>
   <p><strong>Start Date:</strong> <%= @course.start_date %></p>
   <p><strong>End Date:</strong> <%= @course.end_date %></p>
@@ -10,8 +10,12 @@
     data: {confirm: 'Are you sure?'},
     method: :delete
     ) %>
+    <%= link_to(
+      'Add Topic',
+      new_course_topic_path(@course)
+      ) %>
     <div class='container' style="width: 50%">
-      <h2>Topics Covered</h2>
+      <h3>Topics Covered</h3>
 
     </div>
     <p>
@@ -29,14 +33,7 @@
           </thead>
           <tbody>
             <tr>
-              <%= simple_form_for [@course, @topic],html: { class: 'form-horizontal' } do |f| %>
-              <th scope="row"></th>
-              <td><%= f.input :title %></td>
-              <td><%= f.input :description %></td>
-              <td><%= f.input :no_of_hours_required %></td>
-              <td><%= f.input :percentage_completed %></td>
-              <td><%= f.submit %></td>
-              <% end %>
+<!--  place holder for form-->
             </tr>
 
             <% @topics.each do |topic| %>

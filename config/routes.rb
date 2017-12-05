@@ -5,12 +5,12 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create]
 
   resources :courses do
-    resources :topics, shallow: true, only: [:show,:create, :destroy] do
+    resources :topics, shallow: true, only: [:show,:create, :destroy, :new] do
       resources :materials, only: [:create, :destroy, :update, :show]
     end
   end
 
-  
+
   resources :cohorts, shallow: true, only: [:new, :show,:create, :destroy, :index]
   root 'welcome#index'
 

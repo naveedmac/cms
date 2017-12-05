@@ -1,7 +1,6 @@
 class MaterialsController < ApplicationController
     before_action :find_topic, only: [:create]
     before_action :find_material, only: [:destroy,:show]
-
     def create
         @material = @topic.material.new material_params
 
