@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   before_action :find_course, only: [:new,:create]
   before_action :find_topic, only: [:show, :destroy]
-  before_action :authorize_user!
+  before_action :authorize_user!, except: [:index, :show]
 def new
 @topic = Topic.new
 

@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
     before_action :find_course, only: [:show, :edit, :update, :destroy]
-    before_action :authorize_user!
+    before_action :authorize_user!, except: [:index, :show]
     def new
         @course=Course.new
         # @user=User.where(is_admin: true)
@@ -22,7 +22,11 @@ class CoursesController < ApplicationController
     end
     def index
         # @questions = Question.where(aasm_state: [:published, :answered]).order(created_at: :desc)
-        @courses= Course.all.order(created_at: :desc).limit(7)
+        if current_user.is_admin
+          @courses= Course.all.order(created_at: :desc).limit(7)
+        else
+         @courses=Cohort.where(user_id:current_user.id).map {|course_record| Course.find(course_record.course_id)}
+       end
     end
     def show
 

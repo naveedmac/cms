@@ -24,12 +24,14 @@
 
           <% if user_signed_in? %>
 
-          <li class="nav-item active">
-            <%= link_to 'Classes',cohorts_path,class: "nav-link" %>
-          </li>
+
 
           <li class="nav-item active">
             <%= link_to 'Courses', courses_path,class: "nav-link" %>
+          </li>
+          <% if current_user.is_admin? %>
+          <li class="nav-item active">
+            <%= link_to 'Classes',cohorts_path,class: "nav-link" %>
           </li>
 
           <li class="nav-item active">
@@ -39,7 +41,7 @@
           <li class="nav-item active">
             <%= link_to 'New Courses', new_course_path,class: "nav-link" %>
           </li>
-
+          <%end%>
           <li class="navbar-text  ">
             <span>Hello, <%= current_user.first_name %> <%= current_user.last_name %></span>
           </li>

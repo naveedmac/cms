@@ -6,6 +6,7 @@
   <p class="lead"><%=@topic.description %></p>
   <hr class="my-6">
   <p>No. Of Hrs:<%=@topic.no_of_hours_required  %><br> % Completed: <%=@topic.percentage_completed  %></p>
+    <% if current_user.is_admin? %>
   <smal class="pull-right">
     <%= link_to(
       'Add Material',
@@ -16,7 +17,7 @@
 
 
   </small >
-
+<%end%>
 </div>
 List of Material in Topic:
 
@@ -28,24 +29,27 @@ List of Material in Topic:
       <th scope="col">Description</th>
       <th scope="col">Instructions</th>
       <th scope="col">Link</th>
+        <% if current_user.is_admin? %>
       <th scope="col">Delete</th>
+      <%end%>
     </tr>
   </thead>
   <tbody>
 <% @materials.each do |material| %>
       <tr>
-        <th scope="row"><%= link_to material.topic.title, material_path(material) %></th>
+        <th scope="row"></th>
         <td><%= link_to material.title.titleize, material_path(material) %></td>
         <td><%= material.description%></td>
         <td><%= material.instructions%></td>
         <td><%= material.url_link%></td>
-
+  <% if current_user.is_admin? %>
         <td><%= link_to(
           'Delete',
           material_path(material),
           data: {confirm: 'Are you sure?'},
           method: :delete
           ) %></td>
+          <%end%>
       </tr>
 
 

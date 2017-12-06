@@ -8,6 +8,7 @@
     <small>End Date:<%= @course.end_date%> </small><br>
   </a>
 </div>
+  <% if current_user.is_admin? %>
 <div class='pull-right'>
   <%= link_to(
     'Add Topic',
@@ -21,6 +22,7 @@
       ) %>
 
     </div>
+    <%end%>
     <div class='container mt-3' style="width: 90%">
       <h3>Topics Covered</h3>
 
@@ -48,12 +50,14 @@
               <td><%= topic.description%></td>
               <td><%= topic.no_of_hours_required%></td>
               <td><%= topic.percentage_completed%></td>
+                <% if current_user.is_admin? %>
               <td><%= link_to(
                 'Delete',
                 topic_path(topic),
                 data: {confirm: 'Are you sure?'},
                 method: :delete
                 ) %></td>
+                <%end%>
               </tr>
               <%end%>
             </tbody>

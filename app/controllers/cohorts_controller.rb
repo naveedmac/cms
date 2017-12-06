@@ -31,7 +31,7 @@ class CohortsController < ApplicationController
 
           def index
             # @questions = Question.where(aasm_state: [:published, :answered]).order(created_at: :desc)
-            @courses= Cohort.select(:course_id).limit(7).distinct.map {|course_record| Course.find(course_record.course_id)}
+            @courses= Cohort.select(:course_id).distinct.map {|course_record| Course.find(course_record.course_id)}
             # p @courses
         end
           private

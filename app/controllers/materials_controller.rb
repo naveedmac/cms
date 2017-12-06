@@ -1,6 +1,7 @@
 class MaterialsController < ApplicationController
     before_action :find_topic, only: [:new,:create]
     before_action :find_material, only: [:destroy,:show]
+    before_action :authorize_user!, except: [:index, :show]
     def new
       @material=Material.new
     end
@@ -36,4 +37,10 @@ class MaterialsController < ApplicationController
       def material_params
         params.require(:material).permit(:title, :description,:instructions, :file_link,:url_link)
       end
+      def authorize_user!
+            unless can?(:manage, @course)
+              flash[:alert] = "Access Denied!"
+              redirect_to root_path
+            end
+          end #
 end
