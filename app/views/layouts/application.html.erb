@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Cms</title>
+  <link rel="shortcut icon" href="/path_to_your_pic"/>
+  <%= favicon_link_tag '/favicon.ico' %>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -64,7 +66,7 @@
         <div class="container">
         <% end%>
         <% if flash[:notice].present? %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -72,7 +74,7 @@
         </div>
         <% end %>
         <% if flash[:alert].present? %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

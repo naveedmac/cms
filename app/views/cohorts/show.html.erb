@@ -19,11 +19,14 @@
     <tbody>
   <% @users.each do |user| %>
   <tr>
-
+<% c=Cohort.where course_id:@course.id,user_id:user.id %>
+<td><%= c.ids[0] %></td>
     <td><%= user.full_name %></td>
     <td><%= user.telephone %></td>
     <td><%= user.email %></td>
-    <td><%= link_to('Delete')  %></td>
+    <% if current_user.is_admin? %>
+    <td><%= link_to('Remove Student',cohort_path(c[0]),data: {confirm: 'Are you sure?'},method: :delete)  %></td>
+    <% end %>
   </tr>
 
   <% end %>
